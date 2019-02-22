@@ -7,6 +7,6 @@ public class Frame extends JFrame {
 		this.add(layout);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(0, 0, 450, 700);
-		this.setVisible(true);
+		this.setVisible(true); 
 	}
 }

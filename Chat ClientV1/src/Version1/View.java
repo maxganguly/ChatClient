@@ -8,7 +8,7 @@ private JTextField ipaddr;
 public JLabel myip;
 private JTextField myname;
 private LinkedList<JLabel> message;
-private Control control;
+private Control control; 
 private JPanel Messages,ip,in;
 private JButton sendm,sendip;
 	View(Control c,String myIP){
@@ -32,7 +32,7 @@ private JButton sendm,sendip;
 		ipaddr.addActionListener(control); 
 		JPanel up = new JPanel();
 		GridLayout gr = new GridLayout(3,1);
-		up.setLayout(gr);
+		up.setLayout(gr); 
 		ip = new JPanel();
 		in = new JPanel();
 		up.add(ip);
