@@ -29,7 +29,7 @@ private JButton sendm,sendip;
 		myip = new JLabel(myIP);
 		ipaddr = new JTextField(15);
 		ipaddr.setActionCommand("IP");
-		ipaddr.addActionListener(control);
+		ipaddr.addActionListener(control); 
 		JPanel up = new JPanel();
 		GridLayout gr = new GridLayout(3,1);
 		up.setLayout(gr);
