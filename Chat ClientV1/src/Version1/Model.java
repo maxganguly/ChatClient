@@ -27,7 +27,7 @@ public class Model {
 		        }
 		    }
 		} catch (SocketException e) {
-		    throw new RuntimeException(e);
+		   e.printStackTrace();
 		}
 		return null;
 	}
@@ -43,7 +43,7 @@ public class Model {
 				try {
 					s = ss.accept();
 				} catch (IOException e) {
-					
+					e.printStackTrace();
 				}
 				
 			}
@@ -74,6 +74,8 @@ public class Model {
 				v.newMessage(new DataInputStream(s.getInputStream()).readUTF());
 				}catch(IOException e) {
 				v.newMessage("Fehler");
+				e.printStackTrace();
+
 				}
 				
 			}

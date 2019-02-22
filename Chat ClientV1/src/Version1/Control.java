@@ -24,11 +24,15 @@ public class Control implements ActionListener {
 			m.connectclient(m.texttoip(v.myip.getText()));
 			v.newMessage("Connectet");
 		}catch(Exception ex) {
+			ex.printStackTrace();
+
 			try {
 			m.makeserver();
 			v.newMessage("Connectet");
 			}catch(Exception exe) {
 				v.error();
+				exe.printStackTrace();
+
 			}
 		}
 		}
