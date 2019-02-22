@@ -17,7 +17,7 @@ private JPanel Messages;
 		input.setActionCommand("Input");
 		input.addActionListener(control);
 		myname = new JTextField("Neuer Benutzer");
-		myname.setActionCommand("Name");
+		myname.setActionCommand("Name"); 
 		myname.addActionListener(control);
 		myip = new JLabel(myIP);
 		ipaddr = new JTextField();
