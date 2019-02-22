@@ -34,6 +34,7 @@ public class Control implements ActionListener {
 				exe.printStackTrace();
 
 			}
+			System.out.println("lollipop");
 		}
 		}
 	}

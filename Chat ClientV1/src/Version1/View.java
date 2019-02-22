@@ -37,6 +37,8 @@ private JPanel Messages;
 		this.add(Messages,BorderLayout.CENTER);
 		this.add(up, BorderLayout.NORTH);
 		this.add(input ,BorderLayout.SOUTH);
+		System.out.println("lollipop");
+
 	}
 	public void newMessage(String message) {
 		System.out.println(message);
