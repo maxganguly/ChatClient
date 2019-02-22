@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 public class View extends JPanel{
-public JTextField input;
+public JTextField input; 
 private JTextField ipaddr;
 public JLabel myip;
 private JTextField myname;
