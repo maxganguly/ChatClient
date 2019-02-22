@@ -26,6 +26,7 @@ public class Model {
 		            if(Inet4Address.class == addr.getClass()) return ip;
 		        }
 		    }
+		    System.out.println("s");
 		} catch (SocketException e) {
 		   e.printStackTrace();
 		}
