@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.*;
 public class View extends JPanel{
 public JTextField input; 
-private JTextField ipaddr;
+JTextField ipaddr;
 public JLabel myip;
 public JTextField myname;
 private LinkedList<JLabel> message;

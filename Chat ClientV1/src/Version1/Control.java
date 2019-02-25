@@ -34,7 +34,8 @@ public class Control implements ActionListener {
 		if (e.getActionCommand().equals("IP")) {
 			System.out.println("Trying to Connect");
 			try {
-				connect(model.textToIp(v.input.getText()));
+				System.out.println("INPUT: " + v.ipaddr.getText());
+				connect(model.textToIp(v.ipaddr.getText()));
 				v.newMessage("Connected");
 				model.startListener(v);
 			} catch (UnknownHostException e1) {
@@ -60,6 +61,7 @@ System.out.println("Failed Host");				e1.printStackTrace();
 			try {
 				System.out.println("Created Server");
 				ServerSocket ss = new ServerSocket(8080);
+				System.out.println("Listening on: " + ss.getLocalPort());
 				Thread t = new Thread(new Runnable() {
 
 					@Override
@@ -73,7 +75,7 @@ System.out.println("Failed Host");				e1.printStackTrace();
 
 					}
 				});
-				t.run();
+				t.start();
 			} catch (IOException e0) {
 				e0.printStackTrace();
 			}
