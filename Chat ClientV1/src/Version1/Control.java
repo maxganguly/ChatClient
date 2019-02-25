@@ -34,7 +34,7 @@ public class Control implements ActionListener {
 		if (e.getActionCommand().equals("IP")) {
 			System.out.println("Trying to Connect");
 			try {
-				connect(model.textToIp(v.myip.getText()));
+				connect(model.textToIp(v.input.getText()));
 				v.newMessage("Connected");
 				model.startListener(v);
 			} catch (UnknownHostException e1) {
