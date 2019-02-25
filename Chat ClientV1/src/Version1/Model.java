@@ -34,29 +34,8 @@ public class Model {
 		return InetAddress.getByName(text);
 	}
 
-	public void makeServer() throws IOException {
-		this.ss = new ServerSocket(666);
-		Thread t = new Thread(new Runnable() {
 
-			@Override
-			public void run() {
-				try {
-					s = ss.accept();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
 
-			}
-		});
-		t.run();
-
-		server = true;
-	}
-
-	public void connectClient(InetAddress addr) throws Exception {
-		this.s = new Socket(addr, 666);
-		server = false;
-	}
 
 	public void message(String message) {
 		try {
