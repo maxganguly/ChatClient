@@ -50,7 +50,7 @@ System.out.println("Failed Host");				e1.printStackTrace();
 		try {
 			if (ip.isReachable(2000)) {
 				System.out.println("Reachable");
-				socket = new Socket(ip, 666);
+				socket = new Socket(ip, 8080);
 				System.out.println("Connected");
 			} else {
 				System.out.println("Not Reachable");
@@ -59,7 +59,7 @@ System.out.println("Failed Host");				e1.printStackTrace();
 			e.printStackTrace();
 			try {
 				System.out.println("Created Server");
-				ServerSocket ss = new ServerSocket(666);
+				ServerSocket ss = new ServerSocket(8080);
 				Thread t = new Thread(new Runnable() {
 
 					@Override
