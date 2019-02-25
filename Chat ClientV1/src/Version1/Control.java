@@ -16,32 +16,37 @@ public class Control implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals("Input")) {
-			v.newMessage();
-			m.message(v.input.getText());
+			System.out.println("creating message");
+			//v.newMessage();
+			v.newMessage(v.myname.getText()+" : "+v.input.getText());
+			m.message(v.myname.getText()+" : "+v.input.getText());
 		}
 		if(e.getActionCommand().equals("IP")) {
 			try {
 			m.connectclient(m.texttoip(v.myip.getText()));
-			v.newMessage("Connectet");
+			v.newMessage("Connected");
+			getmessage();
+
 		}catch(Exception ex) {
+			ex.printStackTrace();
+
 			try {
 			m.makeserver();
 			v.newMessage("Connectet");
+			getmessage();
+
 			}catch(Exception exe) {
 				v.error();
+				exe.printStackTrace();
+
 			}
 		}
 		}
 	}
 	public void getmessage() {
-		while(true) {
-			m.getmessage(v);
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
+			m.startListener(v);
+			
+		
 	}
 	public static void main(String[] args) {
 		new Control();
