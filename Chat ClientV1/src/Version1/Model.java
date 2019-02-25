@@ -1,8 +1,10 @@
 package Version1;
 
 import java.net.*;
-import java.net.InetAddress;
 import java.util.*;
+
+import javax.swing.JLabel;
+
 import java.io.IOException;
 import java.lang.Thread;
 import java.io.*;
@@ -14,27 +16,18 @@ public class Model {
 	private ServerSocket ss;
 
 	public String getIp() {
-		try {
-			Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
-			while (interfaces.hasMoreElements()) {
-				NetworkInterface iface = interfaces.nextElement();
-				if (iface.isLoopback() || !iface.isUp() || iface.isVirtual() || iface.isPointToPoint())
-					continue;
-
-				Enumeration<InetAddress> addresses = iface.getInetAddresses();
-				while (addresses.hasMoreElements()) {
-					InetAddress addr = addresses.nextElement();
-
-					final String ip = addr.getHostAddress();
-					if (Inet4Address.class == addr.getClass())
-						return ip;
-				}
+		String ip = "";
+		try (final DatagramSocket socket = new DatagramSocket()) {
+			try {
+				socket.connect(InetAddress.getByName("8.8.8.8"), 10002);
+			} catch (UnknownHostException e) {
+				e.printStackTrace();
 			}
-			System.out.println("s");
+			ip = socket.getLocalAddress().getHostAddress();
 		} catch (SocketException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return ip;
 	}
 
 	public InetAddress texttoip(String text) throws UnknownHostException {

@@ -1,55 +1,58 @@
 package Version1;
+
 import java.awt.event.*;
 import java.net.*;
 import java.net.InetAddress;
+
 public class Control implements ActionListener {
 	private View v;
 	public Frame f;
 	private Model m;
+
 	public Control() {
 		m = new Model();
-		v = new View(this,m.getIp());
-		f = new Frame("Version1",v);
-		
-		
+		v = new View(this, m.getIp());
+		f = new Frame("Version1", v);
+
 	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals("Input")) {
-			System.out.println("Creating message");
-			//v.newMessage();
+		if (e.getActionCommand().equals("Input")) {
+			m.message(v.myname.getText() + " : " + v.input.getText());
 
-			v.newMessage(v.myname.getText()+" : "+v.input.getText());
-			m.message(v.myname.getText()+" : "+v.input.getText());
+			v.newMessage(v.myname.getText() + " : " + v.input.getText());
 
-		}
-		if(e.getActionCommand().equals("IP")) {
-			try {
-			m.connectclient(m.texttoip(v.myip.getText()));
-			v.newMessage("Connected");
-			getmessage();
+			if (e.getActionCommand().equals("IP")) {
+				try {
+					m.connectclient(m.texttoip(v.myip.getText()));
+					v.newMessage("Connected");
+					getmessage();
 
-		}catch(Exception ex) {
-			ex.printStackTrace();
+				} catch (Exception ex) {
+					ex.printStackTrace();
 
-			try {
-			m.makeserver();
-			v.newMessage("Connected");
-			getmessage();
+					try {
+						m.makeserver();
+						v.newMessage("Connected");
+						getmessage();
 
-			}catch(Exception exe) {
-				v.error();
-				exe.printStackTrace();
+					} catch (Exception exe) {
+						v.error();
+						exe.printStackTrace();
 
+					}
+				}
 			}
 		}
-		}
+
 	}
+
 	public void getmessage() {
-			m.startListener(v);
-			
-		
+		m.startListener(v);
+
 	}
+
 	public static void main(String[] args) {
 		new Control();
 
