@@ -10,3 +10,4 @@ public class Frame extends JFrame {
 		this.setVisible(true); 
 	}
 }
+

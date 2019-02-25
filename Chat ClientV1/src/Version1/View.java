@@ -10,6 +10,7 @@ public JTextField myname;
 private LinkedList<JLabel> message;
 private Control control; 
 private JPanel Messages,ip,in;
+
 private JButton sendm,sendip;
 
 	View(Control c,String myIP){

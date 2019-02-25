@@ -13,6 +13,7 @@ public class Model {
 	private boolean server;
 	Socket socket;
 	private ServerSocket ss;
+	
 
 	public String getIp() {
 		String ip = "";

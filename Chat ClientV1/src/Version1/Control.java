@@ -20,6 +20,7 @@ public class Control implements ActionListener {
 		frame = new Frame("Version1", v);
 
 	}
+	
 
 	// Action Listener
 	@Override
