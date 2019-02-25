@@ -18,8 +18,8 @@ public class Control implements ActionListener {
 		if(e.getActionCommand().equals("Input")) {
 			System.out.println("creating message");
 			//v.newMessage();
-			v.newMessage(v.myname.getText()+" : "+v.input.getText());
 			m.message(v.myname.getText()+" : "+v.input.getText());
+			v.newMessage(v.myname.getText()+" : "+v.input.getText());
 		}
 		if(e.getActionCommand().equals("IP")) {
 			try {
