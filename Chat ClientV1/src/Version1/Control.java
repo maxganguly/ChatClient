@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 public class Control implements ActionListener {
 	private View v;
@@ -46,7 +45,7 @@ public class Control implements ActionListener {
 
 	public void connect() {
 		try {
-			InetAddress ip = model.textToIp(v.ipaddr.getText());
+			InetAddress ip = model.textToIp(v.ipaddr.getText().trim());
 			if (ip.isReachable(2000)) {
 				System.out.println("Reachable: " + ip.getHostAddress() + " " + "8080");
 				model.socket = new Socket(ip, 8080);
@@ -56,6 +55,7 @@ public class Control implements ActionListener {
 			} else {
 				System.out.println("Not Reachable");
 			}
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 			try {

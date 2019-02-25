@@ -11,41 +11,43 @@ private LinkedList<JLabel> message;
 private Control control; 
 private JPanel Messages,ip,in;
 
-private JButton sendm,sendip;
+private JButton sendm,connect;
 
 	View(Control c,String myIP){
 		this.message = new LinkedList<JLabel>();
 		this.control = c;
-		sendip = new JButton("verbinden");
-		sendip.setActionCommand("IP");
-		sendip.addActionListener(control);
+		connect = new JButton("verbinden");
+		connect.setActionCommand("IP");
+		connect.addActionListener(control);
 		sendm = new JButton("Senden");
 		sendm.setActionCommand("Input");
 		sendm.addActionListener(control);
 		input = new JTextField(30);
 		input.setActionCommand("Input");
 		input.addActionListener(control);
-		myname = new JTextField("Neuer Benutzer");
-		myname.setActionCommand("Name"); 
+		myname = new JTextField("Benutzername");
 		myname.addActionListener(control);
 		myip = new JLabel(myIP);
-		ipaddr = new JTextField(15);
-		ipaddr.setActionCommand("IP");
+		ipaddr = new JTextField("IP/Hostname");
 		ipaddr.addActionListener(control); 
 		JPanel up = new JPanel();
-		GridLayout gr = new GridLayout(3,1);
+		GridLayout gr = new GridLayout(1,4);
+		gr.setHgap(4);
 		up.setLayout(gr); 
 		ip = new JPanel();
+
 		in = new JPanel();
-		up.add(ip);
-		up.add(myip);
+		up.add(ipaddr);
 		up.add(myname);
+		up.add(connect);
+
+		up.add(myip);
+		
 		this.Messages = new JPanel();
-		this.Messages.setLayout(new GridLayout(12,1));
+		this.Messages.setLayout(new GridLayout(20,1));
 		ip.setLayout(new FlowLayout(FlowLayout.LEFT));
 		in.setLayout(new FlowLayout(FlowLayout.LEFT));
-		ip.add(ipaddr);
-		ip.add(sendip);
+
 		in.add(input);
 		in.add(sendm);
 		this.setLayout(new BorderLayout());
