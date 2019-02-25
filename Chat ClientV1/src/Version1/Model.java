@@ -3,7 +3,6 @@ package Version1;
 import java.net.*;
 import java.util.*;
 
-import javax.swing.JLabel;
 
 import java.io.IOException;
 import java.lang.Thread;
@@ -12,7 +11,7 @@ import java.io.*;
 public class Model {
 
 	private boolean server;
-	private Socket s;
+	Socket socket;
 	private ServerSocket ss;
 
 	public String getIp() {
@@ -40,7 +39,7 @@ public class Model {
 	public void message(String message) {
 		try {
 			System.out.println("sending " + message);
-			DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+			DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
 			dos.writeUTF(message);
 			dos.flush();
 			System.out.println("sended");
@@ -56,9 +55,9 @@ public class Model {
 				while (true) {
 
 					try {
-						if (s.getInputStream().available() != 0) {
+						if (socket.getInputStream().available() != 0) {
 							try {
-								v.newMessage(new DataInputStream(s.getInputStream()).readUTF());
+								v.newMessage(new DataInputStream(socket.getInputStream()).readUTF());
 							} catch (IOException e) {
 								v.newMessage("Fehler");
 								e.printStackTrace();

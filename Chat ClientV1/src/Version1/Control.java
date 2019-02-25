@@ -2,7 +2,6 @@ package Version1;
 
 import java.awt.event.*;
 import java.io.IOException;
-import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -11,7 +10,7 @@ import java.net.UnknownHostException;
 public class Control implements ActionListener {
 	private View v;
 	public Frame frame;
-	private Model model;
+	public Model model;
 	Socket socket;
 
 	public Control() {
@@ -49,8 +48,8 @@ System.out.println("Failed Host");				e1.printStackTrace();
 	public void connect(InetAddress ip) {
 		try {
 			if (ip.isReachable(2000)) {
-				System.out.println("Reachable");
-				socket = new Socket(ip, 8080);
+				System.out.println("Reachable: " + ip.getHostAddress() + " " + "8080");
+				model.socket = new Socket(ip, 8080);
 				System.out.println("Connected");
 			} else {
 				System.out.println("Not Reachable");
@@ -65,7 +64,7 @@ System.out.println("Failed Host");				e1.printStackTrace();
 					@Override
 					public void run() {
 						try {
-							socket = ss.accept();
+							model.socket = ss.accept();
 							System.out.println("Connection accepted");
 						} catch (IOException e) {
 							e.printStackTrace();
