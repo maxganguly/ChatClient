@@ -11,6 +11,7 @@ private LinkedList<JLabel> message;
 private Control control; 
 private JPanel Messages,ip,in;
 private JButton sendm,sendip;
+
 	View(Control c,String myIP){
 		this.message = new LinkedList<JLabel>();
 		this.control = c;
@@ -64,7 +65,7 @@ private JButton sendm,sendip;
 			}
 		}
 		this.add(Messages,BorderLayout.CENTER);
-		control.f.revalidate();
+		control.frame.revalidate();
 		input.setText("");
 	}
 	public void newMessage() {

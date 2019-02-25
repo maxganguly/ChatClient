@@ -30,11 +30,11 @@ public class Model {
 		return ip;
 	}
 
-	public InetAddress texttoip(String text) throws UnknownHostException {
+	public InetAddress textToIp(String text) throws UnknownHostException {
 		return InetAddress.getByName(text);
 	}
 
-	public void makeserver() throws IOException {
+	public void makeServer() throws IOException {
 		this.ss = new ServerSocket(666);
 		Thread t = new Thread(new Runnable() {
 
@@ -53,7 +53,7 @@ public class Model {
 		server = true;
 	}
 
-	public void connectclient(InetAddress addr) throws Exception {
+	public void connectClient(InetAddress addr) throws Exception {
 		this.s = new Socket(addr, 666);
 		server = false;
 	}

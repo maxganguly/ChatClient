@@ -6,36 +6,36 @@ import java.net.InetAddress;
 
 public class Control implements ActionListener {
 	private View v;
-	public Frame f;
-	private Model m;
+	public Frame frame;
+	private Model model;
 
 	public Control() {
-		m = new Model();
-		v = new View(this, m.getIp());
-		f = new Frame("Version1", v);
+		model = new Model();
+		v = new View(this, model.getIp());
+		frame = new Frame("Version1", v);
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("Input")) {
-			m.message(v.myname.getText() + " : " + v.input.getText());
+			model.message(v.myname.getText() + " : " + v.input.getText());
 
 			v.newMessage(v.myname.getText() + " : " + v.input.getText());
 
 			if (e.getActionCommand().equals("IP")) {
 				try {
-					m.connectclient(m.texttoip(v.myip.getText()));
+					model.connectClient(model.textToIp(v.myip.getText()));
 					v.newMessage("Connected");
-					getmessage();
+					getMessage();
 
 				} catch (Exception ex) {
 					ex.printStackTrace();
 
 					try {
-						m.makeserver();
+						model.makeServer();
 						v.newMessage("Connected");
-						getmessage();
+						getMessage();
 
 					} catch (Exception exe) {
 						v.error();
@@ -48,8 +48,8 @@ public class Control implements ActionListener {
 
 	}
 
-	public void getmessage() {
-		m.startListener(v);
+	public void getMessage() {
+		model.startListener(v);
 
 	}
 
