@@ -11,7 +11,7 @@ public class Control implements ActionListener {
 	private View v;
 	public Frame frame;
 	public Model model;
-	Socket socket;
+	public static Socket socket;
 
 	public Control() {
 
@@ -33,26 +33,26 @@ public class Control implements ActionListener {
 		}
 		if (e.getActionCommand().equals("IP")) {
 			System.out.println("Trying to Connect");
-			try {
+			
 				System.out.println("INPUT: " + v.ipaddr.getText());
-				connect(model.textToIp(v.ipaddr.getText()));
-				v.newMessage("Connected");
-				model.startListener(v);
-			} catch (UnknownHostException e1) {
-System.out.println("Failed Host");				e1.printStackTrace();
-			}
+				connect();
+				
+			
 			
 
 		}
 
 	}
 
-	public void connect(InetAddress ip) {
+	public void connect() {
 		try {
+			InetAddress ip = model.textToIp(v.ipaddr.getText());
 			if (ip.isReachable(2000)) {
 				System.out.println("Reachable: " + ip.getHostAddress() + " " + "8080");
 				model.socket = new Socket(ip, 8080);
 				System.out.println("Connected");
+				v.newMessage("Connected");
+				model.startListener(v);
 			} else {
 				System.out.println("Not Reachable");
 			}
@@ -69,6 +69,8 @@ System.out.println("Failed Host");				e1.printStackTrace();
 						try {
 							model.socket = ss.accept();
 							System.out.println("Connection accepted");
+							v.newMessage("Connected");
+							model.startListener(v);
 						} catch (IOException e) {
 							e.printStackTrace();
 						}

@@ -11,19 +11,19 @@ import java.io.*;
 public class Model {
 
 	private boolean server;
-	Socket socket;
+	public Socket socket;
 	private ServerSocket ss;
 	
 
 	public String getIp() {
 		String ip = "";
-		try (final DatagramSocket socket = new DatagramSocket()) {
+		try (final DatagramSocket socketo = new DatagramSocket()) {
 			try {
-				socket.connect(InetAddress.getByName("8.8.8.8"), 10002);
+				socketo.connect(InetAddress.getByName("8.8.8.8"), 10002);
 			} catch (UnknownHostException e) {
 				e.printStackTrace();
 			}
-			ip = socket.getLocalAddress().getHostAddress();
+			ip = socketo.getLocalAddress().getHostAddress();
 		} catch (SocketException e) {
 			e.printStackTrace();
 		}
@@ -56,6 +56,7 @@ public class Model {
 				while (true) {
 
 					try {
+						System.out.println("SOcket Model: " + socket.getPort()  + " IP: " + socket.getInetAddress().getHostAddress());
 						if (socket.getInputStream().available() != 0) {
 							try {
 								v.newMessage(new DataInputStream(socket.getInputStream()).readUTF());
