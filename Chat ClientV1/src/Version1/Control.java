@@ -16,9 +16,12 @@ public class Control implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals("Input")) {
-			System.out.println("creating message");
+			System.out.println("Creating message");
 			//v.newMessage();
-			m.message(v.input.getText());
+
+			v.newMessage(v.myname.getText()+" : "+v.input.getText());
+			m.message(v.myname.getText()+" : "+v.input.getText());
+
 		}
 		if(e.getActionCommand().equals("IP")) {
 			try {
@@ -31,7 +34,7 @@ public class Control implements ActionListener {
 
 			try {
 			m.makeserver();
-			v.newMessage("Connectet");
+			v.newMessage("Connected");
 			getmessage();
 
 			}catch(Exception exe) {

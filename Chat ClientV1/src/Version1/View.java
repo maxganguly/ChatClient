@@ -6,7 +6,7 @@ public class View extends JPanel{
 public JTextField input; 
 private JTextField ipaddr;
 public JLabel myip;
-private JTextField myname;
+public JTextField myname;
 private LinkedList<JLabel> message;
 private Control control; 
 private JPanel Messages,ip,in;
@@ -55,7 +55,7 @@ private JButton sendm,sendip;
 	}
 	public void newMessage(String message) {
 		System.out.println(message);
-		this.message.addFirst(new JLabel(myname.getText()+" : "+message));
+		this.message.addFirst(new JLabel(message));
 		Iterator it = this.message.iterator();
 		for(int i = 0; i < 12; i++) {
 			if(it.hasNext()) {
@@ -65,7 +65,7 @@ private JButton sendm,sendip;
 		}
 		this.add(Messages,BorderLayout.CENTER);
 		control.f.revalidate();
-		
+		input.setText("");
 	}
 	public void newMessage() {
 		newMessage(this.input.getText());

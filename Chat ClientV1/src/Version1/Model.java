@@ -82,7 +82,7 @@ public class Model {
 			@Override
 			public void run() {
 				while (true) {
-					System.out.println("listening");
+
 					try {
 						if (s.getInputStream().available() != 0) {
 							try {
