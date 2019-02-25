@@ -23,9 +23,10 @@ public class Control implements ActionListener {
 			
 			model.message(v.myname.getText() + " : " + v.input.getText());
 			v.newMessage(v.myname.getText() + " : " + v.input.getText());
-
+		}
 			if (e.getActionCommand().equals("IP")) {
 				try {
+					System.out.println("Trying to Connect");
 					model.connectClient(model.textToIp(v.myip.getText()));
 					v.newMessage("Connected");
 					model.startListener(v);
@@ -45,7 +46,7 @@ public class Control implements ActionListener {
 					}
 				}
 			}
-		}
+		
 
 	}
 
