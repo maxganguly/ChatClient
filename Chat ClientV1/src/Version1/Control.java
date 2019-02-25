@@ -1,6 +1,7 @@
 package Version1;
 
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -10,6 +11,7 @@ public class Control implements ActionListener {
 	private View v;
 	public Frame frame;
 	public Model model;
+	public String username = "";
 	public static Socket socket;
 
 	public Control() {
@@ -32,7 +34,7 @@ public class Control implements ActionListener {
 		}
 		if (e.getActionCommand().equals("IP")) {
 			System.out.println("Trying to Connect");
-			
+				this.username = v.myname.getText().trim();
 				System.out.println("INPUT: " + v.ipaddr.getText());
 				connect();
 				

@@ -1,15 +1,27 @@
 package Version1;
-import javax.swing.*;
-import java.awt.*;
-import java.util.*;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.util.Iterator;
+import java.util.LinkedList;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+
 public class View extends JPanel{
 public JTextField input; 
-JTextField ipaddr;
+public JTextField ipaddr;
 public JLabel myip;
 public JTextField myname;
-private LinkedList<JLabel> message;
+public LinkedList<JLabel> message;
 private Control control; 
-private JPanel Messages,ip,in;
+private JPanel messagePanel,ip,in;
+public JScrollPane scrollPane = new JScrollPane(messagePanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 private JButton sendm,connect;
 
@@ -43,15 +55,17 @@ private JButton sendm,connect;
 
 		up.add(myip);
 		
-		this.Messages = new JPanel();
-		this.Messages.setLayout(new GridLayout(20,1));
+		this.messagePanel = new JPanel();
+		this.messagePanel.setPreferredSize(new Dimension(450, 1000 + message.size() * 20));
+		this.messagePanel.setLayout(new GridLayout( message.size() + 5,1));
+		scrollPane = new JScrollPane(messagePanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		ip.setLayout(new FlowLayout(FlowLayout.LEFT));
 		in.setLayout(new FlowLayout(FlowLayout.LEFT));
 
 		in.add(input);
 		in.add(sendm);
 		this.setLayout(new BorderLayout());
-		this.add(Messages,BorderLayout.CENTER);
+		this.add(scrollPane,BorderLayout.CENTER);
 		this.add(up, BorderLayout.NORTH);
 		//this.add(input ,BorderLayout.SOUTH);
 
@@ -61,13 +75,17 @@ private JButton sendm,connect;
 		System.out.println(message);
 		this.message.addFirst(new JLabel(message));
 		Iterator it = this.message.iterator();
-		for(int i = 0; i < 12; i++) {
+		for(int i = 0; i < this.message.size() + 5; i++) {
 			if(it.hasNext()) {
 				JLabel jl =(JLabel) it.next();
-				this.Messages.add(jl);
+				this.messagePanel.add(jl);
 			}
 		}
-		this.add(Messages,BorderLayout.CENTER);
+		this.messagePanel.setLayout(new GridLayout( this.message.size() + 5,1));
+
+		this.add(scrollPane,BorderLayout.CENTER);
+		this.messagePanel.setPreferredSize(new Dimension(450, 700 +this.message.size() * 20));
+
 		control.frame.revalidate();
 		input.setText("");
 	}
