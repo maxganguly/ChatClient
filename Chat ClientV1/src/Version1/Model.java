@@ -62,9 +62,9 @@ public class Model {
 						System.out.println("SOcket Model: " + socket.getPort()  + " IP: " + socket.getInetAddress().getHostAddress());
 						if (socket.getInputStream().available() != 0) {
 							try {
-								v.newMessage(new DataInputStream(socket.getInputStream()).readUTF());
+								v.newMessage(new DataInputStream(socket.getInputStream()).readUTF(), false);
 							} catch (IOException e) {
-								v.newMessage("Fehler");
+								v.newMessage("Fehler", true);
 								e.printStackTrace();
 
 							}

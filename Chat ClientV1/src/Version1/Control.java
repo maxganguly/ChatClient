@@ -29,13 +29,13 @@ public class Control implements ActionListener {
 
 		if (e.getActionCommand().equals("Input")) {
 
-			model.message(v.myname.getText() + " : " + v.input.getText());
-			v.newMessage(v.myname.getText() + " : " + v.input.getText());
+			model.message(v.inputUser.getText() + " : " + v.input.getText());
+			v.newMessage(v.inputUser.getText() + " : " + v.input.getText(), true);
 		}
 		if (e.getActionCommand().equals("IP")) {
 			System.out.println("Trying to Connect");
-				this.username = v.myname.getText().trim();
-				System.out.println("INPUT: " + v.ipaddr.getText());
+				this.username = v.inputUser.getText().trim();
+				System.out.println("INPUT: " + v.inputIP.getText());
 				connect();
 				
 			
@@ -47,12 +47,12 @@ public class Control implements ActionListener {
 
 	public void connect() {
 		try {
-			InetAddress ip = model.textToIp(v.ipaddr.getText().trim());
+			InetAddress ip = model.textToIp(v.inputIP.getText().trim());
 			if (ip.isReachable(2000)) {
 				System.out.println("Reachable: " + ip.getHostAddress() + " " + "8080");
 				model.socket = new Socket(ip, 8080);
 				System.out.println("Connected");
-				v.newMessage("Connected");
+				v.newMessage("Connected ", false);
 				model.startListener(v);
 			} else {
 				System.out.println("Not Reachable");
@@ -71,7 +71,7 @@ public class Control implements ActionListener {
 						try {
 							model.socket = ss.accept();
 							System.out.println("Connection accepted");
-							v.newMessage("Connected");
+							v.newMessage("Connected ", false);
 							model.startListener(v);
 						} catch (IOException e) {
 							e.printStackTrace();
