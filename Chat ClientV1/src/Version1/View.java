@@ -87,7 +87,7 @@ private JButton sendm,connect;
 		//this.messagePanel.setLayout(new GridLayout( this.message.size() + 5,1));
 
 		this.add(scrollPane,BorderLayout.CENTER);
-		this.messagePanel.setPreferredSize(new Dimension(450, 700 +this.message.size() * 20));
+		this.messagePanel.setPreferredSize(new Dimension(440, 700 +this.message.size() * 20));
 
 		control.frame.revalidate();
 		input.setText("");
