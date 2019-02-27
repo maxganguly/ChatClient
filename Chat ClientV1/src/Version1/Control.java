@@ -47,8 +47,8 @@ public class Control implements ActionListener {
 
 	public void connect() {
 		try {
-			//InetAddress ip = model.textToIp(v.inputIP.getText().trim());
-			InetAddress ip = model.textToIp("localhost");
+			InetAddress ip = model.textToIp(v.inputIP.getText().trim());
+			//InetAddress ip = model.textToIp("localhost");
 
 			if (ip.isReachable(2000)) {
 				System.out.println("Reachable: " + ip.getHostAddress() + " " + "8080");
@@ -78,7 +78,6 @@ public class Control implements ActionListener {
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
-
 					}
 				});
 				t.start();
@@ -91,7 +90,7 @@ public class Control implements ActionListener {
 
 	public static void main(String[] args) {
 		Control c = new Control();
-		c.connect();
+		//c.connect();
 
 	}
 
