@@ -46,6 +46,8 @@ public class MessagePanel extends JPanel {
 		JLabel head = new JLabel(" " + this.source);
 		JTextArea content = new JTextArea(this.message);
 		content.setLineWrap(true);
+
+		content.setWrapStyleWord(true);
 		content.setEditable(false);
 		content.setBackground(new Color(50, 50, 50));
 		head.setForeground(Color.WHITE);
@@ -54,7 +56,7 @@ public class MessagePanel extends JPanel {
 			contentpane.setPreferredSize(new Dimension(200, 40));
 		} else {
 			contentpane.setPreferredSize(
-					new Dimension(200, 30 + (int) ((this.source.length() + this.message.length()) / 2.1)));
+					new Dimension(200, 40 + (int) ((this.source.length() + this.message.length()) / 2.1)));
 		}
 		// this.setBounds(0, 0, 440, 20 + this.source.length() + this.message.length());
 		// this.setBorder(new EmptyBorder(10, 10, 10, 0));
@@ -63,7 +65,7 @@ public class MessagePanel extends JPanel {
 		contentpane.add(content, BorderLayout.CENTER);
 		contentpane.add(Box.createRigidArea(new Dimension(10,10)), BorderLayout.PAGE_END);
 		if (isOwn) {
-			this.add(Box.createRigidArea(new Dimension(175, 20)));
+			this.add(Box.createRigidArea(new Dimension(170, 20)));
 			this.add(contentpane);
 
 		} else {

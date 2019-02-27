@@ -6,17 +6,15 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
 public class Model {
 
-	private boolean server;
-	public Socket socket;
-	private ServerSocket ss;
 	
+
+	protected Socket socket;
 
 	public String getIp() {
 		String ip = "";
@@ -59,7 +57,7 @@ public class Model {
 				while (true) {
 
 					try {
-						System.out.println("SOcket Model: " + socket.getPort()  + " IP: " + socket.getInetAddress().getHostAddress());
+						//System.out.println("SOcket Model: " + socket.getPort()  + " IP: " + socket.getInetAddress().getHostAddress());
 						if (socket.getInputStream().available() != 0) {
 							try {
 								v.newMessage(new DataInputStream(socket.getInputStream()).readUTF(), false);
