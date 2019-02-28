@@ -48,8 +48,8 @@ public class Control implements ActionListener {
 
 			if (ip.isReachable(2000)) {
 				System.out.println("Reachable: " + ip.getHostAddress() + " " + "8080");
-				Timer myTimer = new Timer();
-				myTimer.schedule(new TimerTask() {
+				Thread thread = new Thread(new Runnable() {
+					
 					@Override
 					public void run() {
 						try {
@@ -61,8 +61,16 @@ public class Control implements ActionListener {
 						
 
 					}
+				});
+				thread.start();
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				thread = null;
 
-				}, 0L, 3L * 1000);
 				if(model.socket == null) {
 					throw new IOException();
 				}
