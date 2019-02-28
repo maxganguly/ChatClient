@@ -107,6 +107,7 @@ public class View extends JPanel {
 		this.add(in, BorderLayout.SOUTH);
 	}
 
+	
 	public void newMessage(String message, boolean isOwn) {
 		System.out.println(message);
 		MessagePanel mp = new MessagePanel(message, isOwn);

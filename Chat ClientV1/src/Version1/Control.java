@@ -80,6 +80,7 @@ public class Control implements ActionListener {
 				v.newMessage("Connected ", false);
 				model.startListener(v);
 			} else {
+	
 				System.out.println("Not Reachable");
 			}
 

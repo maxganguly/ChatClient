@@ -52,7 +52,8 @@ public class MessagePanel extends JPanel {
 		content.setEditable(false);
 		content.setBackground(new Color(50, 50, 50));
 		head.setForeground(Color.WHITE);
-		content.setForeground(new Color(200, 200, 200));
+		content.setForeground(
+				new Color(200, 200, 200));
 		if (this.message.length() < 20) {
 			contentpane.setPreferredSize(new Dimension(200, 40));
 		} else {

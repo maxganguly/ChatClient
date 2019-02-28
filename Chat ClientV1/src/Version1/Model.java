@@ -10,6 +10,7 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 
 public class Model {
+	
 
 	protected Socket socket;
 
