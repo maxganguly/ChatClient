@@ -104,7 +104,8 @@ public class Control implements ActionListener {
 					}
 				});
 				t.start();
-			} catch (IOException e0) {
+			} catch (IOException e0) 
+			{
 				e0.printStackTrace();
 			}
 
