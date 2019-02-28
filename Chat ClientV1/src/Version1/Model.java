@@ -1,6 +1,5 @@
 package Version1;
 
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -11,8 +10,6 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 
 public class Model {
-
-	
 
 	protected Socket socket;
 
@@ -35,9 +32,6 @@ public class Model {
 		return InetAddress.getByName(text);
 	}
 
-
-
-
 	public void message(String message) {
 		try {
 			System.out.println("sending " + message);
@@ -57,7 +51,8 @@ public class Model {
 				while (true) {
 
 					try {
-						//System.out.println("SOcket Model: " + socket.getPort()  + " IP: " + socket.getInetAddress().getHostAddress());
+						// System.out.println("SOcket Model: " + socket.getPort() + " IP: " +
+						// socket.getInetAddress().getHostAddress());
 						if (socket.getInputStream().available() != 0) {
 							try {
 								v.newMessage(new DataInputStream(socket.getInputStream()).readUTF(), false);

@@ -32,55 +32,51 @@ public class View extends JPanel {
 		connect = new JButton("verbinden");
 		connect.setActionCommand("IP");
 		connect.addActionListener(control);
-		connect.setBackground(new Color(20,20,20));
-		connect.setForeground(new Color(200,200,200));
+		connect.setBackground(new Color(20, 20, 20));
+		connect.setForeground(new Color(200, 200, 200));
 		connect.setMargin(new Insets(5, 5, 5, 5));
 
-		
-		this.setBackground(new Color(20,20,20));
+		this.setBackground(new Color(20, 20, 20));
 
 		sendm = new JButton("Senden");
 		sendm.setActionCommand("Input");
 		sendm.addActionListener(control);
-		sendm.setBackground(new Color(20,20,20));
-		sendm.setForeground(new Color(200,200,200));
+		sendm.setBackground(new Color(20, 20, 20));
+		sendm.setForeground(new Color(200, 200, 200));
 
-		
 		input = new JTextField(30);
 		input.setActionCommand("Input");
 		input.addActionListener(control);
-		input.setBackground(new Color(20,20,20));
-		input.setForeground(new Color(200,200,200));
+		input.setBackground(new Color(20, 20, 20));
+		input.setForeground(new Color(200, 200, 200));
 		input.setPreferredSize(new Dimension(220, 30));
 
-		
 		inputUser = new JTextField("Benutzername");
 		inputUser.addActionListener(control);
-		inputUser.setBackground(new Color(20,20,20));
-		inputUser.setForeground(new Color(200,200,200));
+		inputUser.setBackground(new Color(20, 20, 20));
+		inputUser.setForeground(new Color(200, 200, 200));
 		inputUser.setPreferredSize(new Dimension(120, 30));
 
-
 		myip = new JLabel(myIP);
-		myip.setForeground(new Color(200,200,200));
+		myip.setForeground(new Color(200, 200, 200));
 		inputIP = new JTextField("IP/Hostname");
 		inputIP.addActionListener(control);
-		inputIP.setBackground(new Color(20,20,20));
-		inputIP.setForeground(new Color(200,200,200));
+		inputIP.setBackground(new Color(20, 20, 20));
+		inputIP.setForeground(new Color(200, 200, 200));
 		inputIP.setPreferredSize(new Dimension(120, 30));
 		JPanel up = new JPanel();
-		//GridLayout gr = new GridLayout(1, 4);
-		//gr.setHgap(4);
-	//	gr.setVgap(5);
+		// GridLayout gr = new GridLayout(1, 4);
+		// gr.setHgap(4);
+		// gr.setVgap(5);
 		up.setLayout(new FlowLayout(FlowLayout.LEFT));
-		up.setBackground(new Color(20,20,20));
+		up.setBackground(new Color(20, 20, 20));
 
 		ip = new JPanel();
 		up.setPreferredSize(new Dimension(450, 40));
-		this.ip.setBackground(new Color(20,20,20));
+		this.ip.setBackground(new Color(20, 20, 20));
 
 		in = new JPanel();
-		this.in.setBackground(new Color(20,20,20));
+		this.in.setBackground(new Color(20, 20, 20));
 
 		up.add(inputIP);
 		up.add(inputUser);
@@ -90,7 +86,7 @@ public class View extends JPanel {
 
 		this.messagePanel = new JPanel();
 		this.messagePanel.setPreferredSize(new Dimension(450, 600 + messages.size() * 20));
-		this.messagePanel.setBackground(new Color(20,20,20));
+		this.messagePanel.setBackground(new Color(20, 20, 20));
 
 		// this.messagePanel.setLayout(new BoxLayout(this.messagePanel,
 		// BoxLayout.PAGE_AXIS));
@@ -113,19 +109,18 @@ public class View extends JPanel {
 	public void newMessage(String message, boolean isOwn) {
 		System.out.println(message);
 		messages.add(new MessagePanel(message, isOwn));
-		for(MessagePanel temp : messages) {
-				System.out.println("added");
-				this.messagePanel.add(temp);
-			
+		for (MessagePanel temp : messages) {
+			System.out.println("added");
+			this.messagePanel.add(temp);
+
 		}
 		// this.messagePanel.setLayout(new GridLayout( this.message.size() + 5,1));
 		this.messagePanel.setPreferredSize(new Dimension(450, 600 + this.messages.size() * 20));
-		//this.add(new JLabel(""));
+		// this.add(new JLabel(""));
 		this.add(scrollPane, BorderLayout.CENTER);
 
 		control.frame.revalidate();
 		input.setText("");
 	}
-
 
 }

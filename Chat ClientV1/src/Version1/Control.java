@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.*;
 
 public class Control implements ActionListener {
 	private View v;
@@ -21,9 +22,7 @@ public class Control implements ActionListener {
 		frame = new Frame("Version1", v);
 
 	}
-	
 
-	// Action Listener
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -34,12 +33,9 @@ public class Control implements ActionListener {
 		}
 		if (e.getActionCommand().equals("IP")) {
 			System.out.println("Trying to Connect");
-				this.username = v.inputUser.getText().trim();
-				System.out.println("INPUT: " + v.inputIP.getText());
-				connect();
-				
-			
-			
+			this.username = v.inputUser.getText().trim();
+			System.out.println("INPUT: " + v.inputIP.getText());
+			connect();
 
 		}
 
@@ -48,18 +44,35 @@ public class Control implements ActionListener {
 	public void connect() {
 		try {
 			InetAddress ip = model.textToIp(v.inputIP.getText().trim());
-			//InetAddress ip = model.textToIp("localhost");
+			// InetAddress ip = model.textToIp("localhost");
 
 			if (ip.isReachable(2000)) {
 				System.out.println("Reachable: " + ip.getHostAddress() + " " + "8080");
-				model.socket = new Socket(ip, 8080);
+				Timer myTimer = new Timer();
+				myTimer.schedule(new TimerTask() {
+					@Override
+					public void run() {
+						try {
+							model.socket = new Socket(ip, 8080);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+
+					}
+
+				}, 0L, 3L * 1000);
+				if(model.socket == null) {
+					throw new IOException();
+				}
 				System.out.println("Connected");
 				v.newMessage("Connected ", false);
 				model.startListener(v);
 			} else {
 				System.out.println("Not Reachable");
 			}
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 			try {
@@ -90,7 +103,7 @@ public class Control implements ActionListener {
 
 	public static void main(String[] args) {
 		Control c = new Control();
-		//c.connect();
+		// c.connect();
 
 	}
 

@@ -30,7 +30,7 @@ public class MessagePanel extends JPanel {
 		if (message0.contains("Connected")) {
 			this.source = "" + message0.substring(0, message0.indexOf(" "));
 		} else {
-			this.source = "" +message0.substring(0, message0.indexOf(":") + 1);
+			this.source = "" + message0.substring(0, message0.indexOf(":") + 1);
 
 		}
 		this.message = " " + message0.replace(this.source, "");
@@ -63,7 +63,7 @@ public class MessagePanel extends JPanel {
 
 		contentpane.add(head, BorderLayout.PAGE_START);
 		contentpane.add(content, BorderLayout.CENTER);
-		contentpane.add(Box.createRigidArea(new Dimension(10,10)), BorderLayout.PAGE_END);
+		contentpane.add(Box.createRigidArea(new Dimension(10, 10)), BorderLayout.PAGE_END);
 		if (isOwn) {
 			this.add(Box.createRigidArea(new Dimension(170, 20)));
 			this.add(contentpane);
@@ -75,7 +75,5 @@ public class MessagePanel extends JPanel {
 		}
 
 	}
-
-	
 
 }
