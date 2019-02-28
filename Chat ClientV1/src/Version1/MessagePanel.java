@@ -16,6 +16,7 @@ public class MessagePanel extends JPanel {
 	private String message = "";
 	private String source = "";
 	private int wraps = 0;
+	int height = 0;
 
 	public MessagePanel(String message0, boolean isOwn) {
 		JPanel contentpane = new JPanel() {
@@ -73,6 +74,7 @@ public class MessagePanel extends JPanel {
 			this.add(Box.createRigidArea(new Dimension(235, 20)));
 
 		}
+		this.height = (int) contentpane.getPreferredSize().getHeight() + 15;
 
 	}
 

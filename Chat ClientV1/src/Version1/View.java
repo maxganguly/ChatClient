@@ -21,6 +21,7 @@ public class View extends JPanel {
 	public ArrayList<MessagePanel> messages;
 	private Control control;
 	private JPanel messagePanel, ip, in;
+	private int panelHeight = 0;
 	public JScrollPane scrollPane = new JScrollPane(messagePanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -108,18 +109,26 @@ public class View extends JPanel {
 
 	public void newMessage(String message, boolean isOwn) {
 		System.out.println(message);
-		messages.add(new MessagePanel(message, isOwn));
+		MessagePanel mp = new MessagePanel(message, isOwn);
+		this.panelHeight += mp.height;
+		messages.add(mp);
+		
 		for (MessagePanel temp : messages) {
 			System.out.println("added");
 			this.messagePanel.add(temp);
 
 		}
 		// this.messagePanel.setLayout(new GridLayout( this.message.size() + 5,1));
-		this.messagePanel.setPreferredSize(new Dimension(450, 600 + this.messages.size() * 20));
+		this.messagePanel.setPreferredSize(new Dimension(450, 20 + this.panelHeight));
 		// this.add(new JLabel(""));
+
 		this.add(scrollPane, BorderLayout.CENTER);
 
 		control.frame.revalidate();
+		if(scrollPane.getVerticalScrollBar().getValue() != scrollPane.getVerticalScrollBar().getMaximum()) {
+			scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
+
+		}
 		input.setText("");
 	}
 
