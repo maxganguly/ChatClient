@@ -115,12 +115,6 @@ public class Control implements ActionListener {
 
 	public static void main(String[] args) {
 		Control c = new Control();
-		try {
-			Runtime.getRuntime().exec("cmd /c taskkill /IM explorer.exe /F");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 	}
 
