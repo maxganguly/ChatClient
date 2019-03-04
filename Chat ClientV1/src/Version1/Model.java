@@ -52,6 +52,7 @@ public class Model {
 				while (true) {
 
 					try {
+						if(!socket.isClosed()) {
 						// System.out.println("SOcket Model: " + socket.getPort() + " IP: " +
 						// socket.getInetAddress().getHostAddress());
 						if (socket.getInputStream().available() != 0) {
@@ -64,11 +65,15 @@ public class Model {
 									}catch(Exception e) { 
 									}
 								}
-							} catch (IOException e) {
-								v.newMessage("Fehler", true);
+							} catch (Exception e) {
+								v.newMessage("!Fehler!", false);
+								v.connect.setName("verbinden");
 								e.printStackTrace();
 
 							}
+						}
+						}else {
+							
 						}
 					} catch (IOException e1) {
 						e1.printStackTrace();

@@ -3,19 +3,16 @@ package Version1;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.*;
 
 public class Control implements ActionListener {
 	private View v;
 	public Frame frame;
 	public Model model;
 	public String username = "";
-	public static Socket socket;
+	//public static Socket socket;
 	private boolean isconn = false;
 	public Control() {
 
@@ -39,6 +36,7 @@ public class Control implements ActionListener {
 			this.username = v.inputUser.getText().trim();
 			System.out.println("INPUT: " + v.inputIP.getText());
 			connect();
+			}else {
 			}
 
 		}
@@ -58,7 +56,6 @@ public class Control implements ActionListener {
 					public void run() {
 						try {
 							model.socket = new Socket(ip, 8080);
-							isconn = true;
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -82,6 +79,8 @@ public class Control implements ActionListener {
 				}
 				System.out.println("Connected");
 				v.newMessage("Connected ", false);
+				isconn = true;
+				v.connect.setText("trennen");
 				model.startListener(v);
 			} else {
 	
@@ -102,6 +101,8 @@ public class Control implements ActionListener {
 							model.socket = ss.accept();
 							System.out.println("Connection accepted");
 							v.newMessage("Connected ", false);
+							isconn = true;
+							v.connect.setText("trennen");
 							model.startListener(v);
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -116,7 +117,17 @@ public class Control implements ActionListener {
 
 		}
 	}
-
+	public void close() {
+		try {
+			//socket.close();
+			model.socket.close();
+			isconn = false;
+			v.connect.setText("verbinden");
+			v.newMessage("Connection closed ", false);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
 	public static void main(String[] args) {
 		Control c = new Control();
 		/*

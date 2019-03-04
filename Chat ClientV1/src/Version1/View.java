@@ -25,7 +25,7 @@ public class View extends JPanel {
 	public JScrollPane scrollPane = new JScrollPane(messagePanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
-	private JButton sendm, connect;
+	public JButton sendm, connect;
 
 	View(Control c, String myIP) {
 		this.messages = new ArrayList<MessagePanel>();
