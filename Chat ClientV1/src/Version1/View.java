@@ -130,7 +130,9 @@ public class View extends JPanel {
 			scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
 
 		}
+		if(isOwn) {
 		input.setText("");
+		}
 	}
 
 }

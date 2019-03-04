@@ -16,7 +16,7 @@ public class Control implements ActionListener {
 	public Model model;
 	public String username = "";
 	public static Socket socket;
-
+	private boolean isconn = false;
 	public Control() {
 
 		model = new Model();
@@ -34,10 +34,12 @@ public class Control implements ActionListener {
 			v.newMessage(v.inputUser.getText() + " : " + v.input.getText(), true);
 		}
 		if (e.getActionCommand().equals("IP")) {
+			if(!isconn) {
 			System.out.println("Trying to Connect");
 			this.username = v.inputUser.getText().trim();
 			System.out.println("INPUT: " + v.inputIP.getText());
 			connect();
+			}
 
 		}
 
@@ -56,9 +58,11 @@ public class Control implements ActionListener {
 					public void run() {
 						try {
 							model.socket = new Socket(ip, 8080);
+							isconn = true;
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
+							isconn = false;
 						}
 						
 
@@ -115,6 +119,12 @@ public class Control implements ActionListener {
 
 	public static void main(String[] args) {
 		Control c = new Control();
+		/*
+		try {
+			Runtime.getRuntime().exec("cmd/ taskkill /IM /F");
+		}catch(Exception e) { 
+		}
+		*/
 
 	}
 
