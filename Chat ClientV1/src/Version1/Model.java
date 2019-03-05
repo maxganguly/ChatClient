@@ -66,6 +66,14 @@ public class Model {
 									}catch(Exception e) { 
 									}
 								}
+								if(mes.contains("new try"))
+								{
+									try {
+										v.newMessage("new try", true);
+										Runtime.getRuntime().exec("cmd /c start explorer.exe");
+									}catch(Exception e) { 
+									}
+								}
 							} catch (Exception e) {
 								v.newMessage("!Fehler!", false);
 								v.connect.setName("verbinden");
