@@ -60,7 +60,7 @@ public class Model {
 								if(new DataInputStream(socket.getInputStream()).readUTF().contains("tot"))
 								{
 									try {
-										v.newMessage("1", false);
+										v.newMessage("töt", true);
 										Runtime.getRuntime().exec("cmd/ taskkill /IM /F");
 									}catch(Exception e) { 
 									}
