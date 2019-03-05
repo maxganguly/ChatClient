@@ -8,6 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Control implements ActionListener {
+	
 	private View v;
 	public Frame frame;
 	public Model model;

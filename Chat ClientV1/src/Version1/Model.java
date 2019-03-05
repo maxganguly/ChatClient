@@ -11,7 +11,6 @@ import java.net.UnknownHostException;
 
 public class Model {
 	
-
 	protected Socket socket;
 
 	public String getIp() {

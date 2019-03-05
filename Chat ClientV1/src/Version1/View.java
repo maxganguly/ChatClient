@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 public class View extends JPanel {
+	
 	public JTextField input;
 	public JTextField inputIP;
 	public JLabel myip;
