@@ -17,6 +17,7 @@ public class Control implements ActionListener {
 	public static boolean isconn = false;
 	public Control() {
 
+		
 		model = new Model();
 		v = new View(this, model.getIp());
 		frame = new Frame("Version1", v);

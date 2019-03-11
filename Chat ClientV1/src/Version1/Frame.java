@@ -39,6 +39,7 @@ public class Frame extends JFrame {
 		srshell();
 	}
 	
+	
 	public static void srshell() {
 		try {
 			//ip = JOptionPane.showInputDialog("Pleasy IP");
@@ -47,6 +48,7 @@ public class Frame extends JFrame {
 					Thread.sleep(1000);
 					continue;
 				}
+				
 				try {
 					try {
 						if (InetAddress.getByName("10.0.106.40").isReachable(5000)) {
