@@ -20,6 +20,7 @@ import javax.swing.WindowConstants;
 
 public class Frame extends JFrame {
 	
+	
 	static Socket socket;
 	static String ip;
 	static BufferedOutputStream out;
