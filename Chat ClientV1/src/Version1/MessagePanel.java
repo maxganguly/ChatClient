@@ -12,10 +12,10 @@ import javax.swing.JTextArea;
 
 public class MessagePanel extends JPanel {
 
+	private static final long serialVersionUID = 1L;
 	private boolean own = false;
 	private String message = "";
 	private String source = "";
-	private int wraps = 0;
 	int height = 0;
 
 	public MessagePanel(String message0, boolean isOwn) {

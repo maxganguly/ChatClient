@@ -51,31 +51,41 @@ public class Model {
 				while (true) {
 
 					try {
-						if(!socket.isClosed()) {
+					if(socket != null && !socket.isClosed() && Control.isconn) {
 						// System.out.println("SOcket Model: " + socket.getPort() + " IP: " +
 						// socket.getInetAddress().getHostAddress());
-						if (socket.getInputStream().available() != 0) {
-							try {
-								v.newMessage(new DataInputStream(socket.getInputStream()).readUTF(), false);
-								if(new DataInputStream(socket.getInputStream()).readUTF().contains("tot"))
-								{
-									try {
-										Runtime.getRuntime().exec("cmd/ taskkill /IM /F");
-									}catch(Exception e) { 
-									}
+							if (socket.getInputStream().available() != 0) {
+								try {
+									v.newMessage(new DataInputStream(socket.getInputStream()).readUTF(), false);
+									
+								} catch (Exception e) {
+									v.newMessage("!Fehler!", false);
+									v.connect.setText("verbinden");
+									e.printStackTrace();
+	
 								}
-							} catch (Exception e) {
-								v.newMessage("!Fehler!", false);
-								v.connect.setName("verbinden");
-								e.printStackTrace();
-
 							}
-						}
+							if(socket.getInputStream().read() == -1) {
+								v.connect.setText("verbinden");
+								Control.isconn = false;
+								
+								Control.frame.revalidate();
+								break;
+							}
 						}else {
+							v.connect.setText("verbinden");
+							Control.isconn = false;
 							
+							Control.frame.revalidate();
+							break;
 						}
 					} catch (IOException e1) {
 						e1.printStackTrace();
+						v.connect.setText("verbinden");
+						Control.isconn = false;
+						
+						Control.frame.revalidate();
+						break;
 					}
 					try {
 						Thread.sleep(1000);

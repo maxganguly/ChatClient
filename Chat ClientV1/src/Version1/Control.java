@@ -10,11 +10,11 @@ import java.net.Socket;
 public class Control implements ActionListener {
 	
 	private View v;
-	public Frame frame;
+	public static Frame frame;
 	public Model model;
 	public String username = "";
 	//public static Socket socket;
-	private boolean isconn = false;
+	public static boolean isconn = false;
 	public Control() {
 
 		model = new Model();
@@ -38,6 +38,13 @@ public class Control implements ActionListener {
 			System.out.println("INPUT: " + v.inputIP.getText());
 			connect();
 			}else {
+				try {
+					model.socket.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				};
+				isconn = false;
 			}
 
 		}
@@ -104,6 +111,7 @@ public class Control implements ActionListener {
 							v.newMessage("Connected ", false);
 							isconn = true;
 							v.connect.setText("trennen");
+							Control.frame.revalidate();
 							model.startListener(v);
 						} catch (IOException e) {
 							e.printStackTrace();

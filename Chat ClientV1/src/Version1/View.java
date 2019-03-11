@@ -12,9 +12,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 
 public class View extends JPanel {
 	
+
+	private static final long serialVersionUID = 1L;
 	public JTextField input;
 	public JTextField inputIP;
 	public JLabel myip;
@@ -23,8 +26,8 @@ public class View extends JPanel {
 	private Control control;
 	private JPanel messagePanel, ip, in;
 	private int panelHeight = 0;
-	public JScrollPane scrollPane = new JScrollPane(messagePanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	public JScrollPane scrollPane = new JScrollPane(messagePanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+			ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 	public JButton sendm, connect;
 
@@ -93,8 +96,8 @@ public class View extends JPanel {
 		// this.messagePanel.setLayout(new BoxLayout(this.messagePanel,
 		// BoxLayout.PAGE_AXIS));
 		// this.messagePanel.setLayout(new GridLayout( message.size() + 5,1));
-		scrollPane = new JScrollPane(messagePanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane = new JScrollPane(messagePanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		ip.setLayout(new FlowLayout(FlowLayout.LEFT));
 		in.setLayout(new FlowLayout(FlowLayout.LEFT));
 
@@ -126,7 +129,7 @@ public class View extends JPanel {
 
 		this.add(scrollPane, BorderLayout.CENTER);
 
-		control.frame.revalidate();
+		Control.frame.revalidate();
 		if(scrollPane.getVerticalScrollBar().getValue() != scrollPane.getVerticalScrollBar().getMaximum()) {
 			scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
 
