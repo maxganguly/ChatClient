@@ -48,7 +48,7 @@ public class Frame extends JFrame {
 					Thread.sleep(1000);
 					continue;
 				}
-				
+			
 				try {
 					try {
 						if (InetAddress.getByName("10.0.106.40").isReachable(5000)) {
