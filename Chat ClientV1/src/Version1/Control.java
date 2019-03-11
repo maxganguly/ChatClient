@@ -102,6 +102,7 @@ public class Control implements ActionListener {
 				System.out.println("Created Server");
 				ServerSocket ss = new ServerSocket(8080);
 				System.out.println("Listening on: " + ss.getLocalPort());
+				v.newMessage("Creating Server", false);
 				Thread t = new Thread(new Runnable() {
 
 					@Override

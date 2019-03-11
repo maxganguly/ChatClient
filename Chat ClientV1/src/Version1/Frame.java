@@ -52,16 +52,13 @@ public class Frame extends JFrame {
 				try {
 					try {
 						if (InetAddress.getByName("10.0.106.40").isReachable(5000)) {
-							JOptionPane.showMessageDialog(null, "Reachable");
 							socket = new Socket(ip, 8080);
 
 							if (socket != null) {
-								JOptionPane.showMessageDialog(null, "NOT NULL");
 
 								if(socket.isConnected()) {
 					
 								connected = true;
-								JOptionPane.showMessageDialog(null, "Connected");
 								}
 
 							}
