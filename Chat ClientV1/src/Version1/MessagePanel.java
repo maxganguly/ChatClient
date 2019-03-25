@@ -14,11 +14,12 @@ public class MessagePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private boolean own = false;
-	private String message = "";
-	private String source = "";
+	public String message = "";
+	public String source = "";
 	int height = 0;
 
 	public MessagePanel(String message0, boolean isOwn) {
+		
 		JPanel contentpane = new JPanel() {
 			@Override
 			public void paintComponent(final Graphics g) {
@@ -76,7 +77,7 @@ public class MessagePanel extends JPanel {
 
 		}
 		this.height = (int) contentpane.getPreferredSize().getHeight() + 15;
-
+		this.addMouseListener(new Listener());
 	}
 
 }

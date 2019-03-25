@@ -10,7 +10,7 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 
 public class Model {
-	
+
 	protected Socket socket;
 
 	public String getIp() {
@@ -45,37 +45,33 @@ public class Model {
 	}
 
 	public void startListener(View v) {
-		Thread t = new Thread(new Runnable() {
+		
+		Thread tw = new Thread(new Runnable() {
 			@Override
 			public void run() {
+				System.out.println("started llistenerss9");
 				while (true) {
-
+					System.out.println("listening");
 					try {
-					if(socket != null && !socket.isClosed() && Control.isconn) {
-						// System.out.println("SOcket Model: " + socket.getPort() + " IP: " +
-						// socket.getInetAddress().getHostAddress());
+						if (socket != null && !socket.isClosed() && Control.isconn) {
+							// System.out.println("SOcket Model: " + socket.getPort() + " IP: " +
+							// socket.getInetAddress().getHostAddress());
 							if (socket.getInputStream().available() != 0) {
 								try {
 									v.newMessage(new DataInputStream(socket.getInputStream()).readUTF(), false);
-									
+
 								} catch (Exception e) {
 									v.newMessage("!Fehler!", false);
 									v.connect.setText("verbinden");
 									e.printStackTrace();
-	
+
 								}
 							}
-							if(socket.getInputStream().read() == -1) {
-								v.connect.setText("verbinden");
-								Control.isconn = false;
-								
-								Control.frame.revalidate();
-								break;
-							}
-						}else {
+							
+						} else {
 							v.connect.setText("verbinden");
 							Control.isconn = false;
-							
+
 							Control.frame.revalidate();
 							break;
 						}
@@ -83,7 +79,7 @@ public class Model {
 						e1.printStackTrace();
 						v.connect.setText("verbinden");
 						Control.isconn = false;
-						
+
 						Control.frame.revalidate();
 						break;
 					}
@@ -96,6 +92,6 @@ public class Model {
 
 			}
 		});
-		t.start();
+		tw.start();
 	}
 }

@@ -128,8 +128,8 @@ public class View extends JPanel {
 		// this.add(new JLabel(""));
 
 		this.add(scrollPane, BorderLayout.CENTER);
-
 		Control.frame.revalidate();
+		
 		if(scrollPane.getVerticalScrollBar().getValue() != scrollPane.getVerticalScrollBar().getMaximum()) {
 			scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
 

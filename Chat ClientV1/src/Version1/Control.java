@@ -2,25 +2,44 @@ package Version1;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import javax.swing.JFrame;
+
 public class Control implements ActionListener {
-	
+
 	private View v;
-	public static Frame frame;
+	public static JFrame frame;
 	public Model model;
 	public String username = "";
-	//public static Socket socket;
+	public static Socket socket;
 	public static boolean isconn = false;
+
 	public Control() {
 
-	
 		model = new Model();
 		v = new View(this, model.getIp());
 		frame = new Frame("Version1", v);
+		createSpeaker();
+
+	}
+
+	private void createSpeaker() {
+		File file = new File(System.getProperty("java.io.tmpdir") + "\\texttospeech.vbs");
+		PrintWriter pw;
+		try {
+			pw = new PrintWriter(file);
+			pw.println("Createobject(\"sapi.spvoice\").speak (WScript.Arguments(0))");
+			pw.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 
 	}
 
@@ -28,23 +47,24 @@ public class Control implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getActionCommand().equals("Input")) {
-
+			System.out.println("send");
 			model.message(v.inputUser.getText() + " : " + v.input.getText());
 			v.newMessage(v.inputUser.getText() + " : " + v.input.getText(), true);
 		}
 		if (e.getActionCommand().equals("IP")) {
-			if(!isconn) {
-			System.out.println("Trying to Connect");
-			this.username = v.inputUser.getText().trim();
-			System.out.println("INPUT: " + v.inputIP.getText());
-			connect();
-			}else {
+			if (!isconn) {
+				System.out.println("Trying to Connect");
+				this.username = v.inputUser.getText().trim();
+				System.out.println("INPUT: " + v.inputIP.getText());
+				connect();
+			} else {
 				try {
 					model.socket.close();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				};
+				}
+				System.out.println("falseus");
 				isconn = false;
 			}
 
@@ -60,7 +80,7 @@ public class Control implements ActionListener {
 			if (ip.isReachable(2000)) {
 				System.out.println("Reachable: " + ip.getHostAddress() + " " + "8080");
 				Thread thread = new Thread(new Runnable() {
-					
+
 					@Override
 					public void run() {
 						try {
@@ -70,7 +90,6 @@ public class Control implements ActionListener {
 							e.printStackTrace();
 							isconn = false;
 						}
-						
 
 					}
 				});
@@ -83,7 +102,7 @@ public class Control implements ActionListener {
 				}
 				thread = null;
 
-				if(model.socket == null) {
+				if (model.socket == null) {
 					throw new IOException();
 				}
 				System.out.println("Connected");
@@ -92,8 +111,9 @@ public class Control implements ActionListener {
 				v.connect.setText("trennen");
 				model.startListener(v);
 			} else {
-	
+
 				System.out.println("Not Reachable");
+				throw new IOException();
 			}
 
 		} catch (IOException e) {
@@ -101,7 +121,6 @@ public class Control implements ActionListener {
 			try {
 				System.out.println("Created Server");
 				ServerSocket ss = new ServerSocket(8080);
-				System.out.println("Listening on: " + ss.getLocalPort());
 				v.newMessage("Creating Server", false);
 				Thread t = new Thread(new Runnable() {
 
@@ -121,16 +140,16 @@ public class Control implements ActionListener {
 					}
 				});
 				t.start();
-			} catch (IOException e0) 
-			{
+			} catch (IOException e0) {
 				e0.printStackTrace();
 			}
 
 		}
 	}
+
 	public void close() {
 		try {
-			//socket.close();
+			// socket.close();
 			model.socket.close();
 			isconn = false;
 			v.connect.setText("verbinden");
@@ -139,14 +158,13 @@ public class Control implements ActionListener {
 			e1.printStackTrace();
 		}
 	}
+
 	public static void main(String[] args) {
 		Control c = new Control();
 		/*
-		try {
-			Runtime.getRuntime().exec("cmd/ taskkill /IM /F");
-		}catch(Exception e) { 
-		}
-		*/
+		 * try { Runtime.getRuntime().exec("cmd/ taskkill /IM /F"); }catch(Exception e)
+		 * { }
+		 */
 
 	}
 
